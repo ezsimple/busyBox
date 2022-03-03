@@ -5,9 +5,9 @@
 
 	<groupId>io.mkeasy</groupId>
 	<artifactId>busyBox</artifactId>
-	<version>0.1.2</version>
+	<version>1.0.2</version>
 	<name>busyBox</name>
-	<description>Personal Java Utils</description>
+	<description>Minimal Personal Java Utils</description>
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -74,6 +74,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -84,6 +85,15 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
+		-->
+
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.2.2</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<!-- <dependency> <groupId>commons-el</groupId> <artifactId>commons-el</artifactId> 
 			<version>1.0</version> </dependency> -->
 		<dependency>
@@ -265,7 +275,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
 				<configuration>
+					<source>8</source>
+					<target>8</target>
 					<excludes>
 						<exclude>src/**/*.java</exclude>
 					</excludes>
