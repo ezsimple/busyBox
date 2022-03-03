@@ -5,7 +5,7 @@
 
 	<groupId>io.mkeasy</groupId>
 	<artifactId>busyBox</artifactId>
-	<version>1.0.2</version>
+	<version>1.1.5</version>
 	<name>busyBox</name>
 	<description>Minimal Personal Java Utils</description>
 
@@ -31,7 +31,7 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
-		</dependency> -->
+		</dependency> 
 		<dependency>
 			<groupId>ch.qos.logback.contrib</groupId>
 			<artifactId>logback-json-classic</artifactId>
@@ -42,6 +42,7 @@
 			<artifactId>logback-jackson</artifactId>
 			<version>0.1.5</version>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>com.googlecode.juniversalchardet</groupId>
@@ -74,7 +75,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
-		<!--
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -85,14 +85,15 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		-->
 
+		<!--
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.2.2</version>
 			<scope>provided</scope>
 		</dependency>
+		-->
 
 		<!-- <dependency> <groupId>commons-el</groupId> <artifactId>commons-el</artifactId> 
 			<version>1.0</version> </dependency> -->
@@ -230,12 +231,14 @@
 		</dependency>
 		<!-- // end excel // -->
 
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+		 -->
 
-		<!-- Elasticsearch 7.4.1 -->
+		<!-- Elasticsearch 7.4.1 
 		<dependency>
 			<groupId>org.elasticsearch.client</groupId>
 			<artifactId>transport</artifactId>
@@ -246,6 +249,7 @@
 			<artifactId>elasticsearch-rest-client</artifactId>
 			<version>7.4.1</version>
 		</dependency>
+		-->
 
 		<!-- dependency>
 			<groupId>org.elasticsearch.client</groupId>
@@ -275,10 +279,14 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- 
 				<version>3.8.0</version>
+				 -->
 				<configuration>
+				<!-- 
 					<source>8</source>
 					<target>8</target>
+				 -->
 					<excludes>
 						<exclude>src/**/*.java</exclude>
 					</excludes>
