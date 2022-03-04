@@ -1,5 +1,6 @@
 package io.mkeasy.webapp.processor;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -23,43 +24,39 @@ public class MyBatisProcessor implements ProcessorService {
     // private List<Object> EMPTY_LIST = Collections.emptyList();
 
     public Object execute(ProcessorParam processorParam) throws Exception {
-        String path = processorParam.getNameSpace();
+        String nameSpace = processorParam.getNameSpace();
+        String nameSpaceId = processorParam.getNameSpaceId();
         CaseInsensitiveMap params = processorParam.getParams();
 
-        String queryPath = processorParam.getNameSpace();
-        String action = processorParam.getNameSpaceId();
-        String returnId = queryPath + "." + action;
+        String statementId = nameSpace + "." + nameSpaceId;
 
         Map<String, Object> resultSet = new LinkedCaseInsensitiveMap<Object>();
 
-        log.debug("queryPath = {}, action = {}", queryPath, action);
+        log.debug("queryPath = {}, action = {}", nameSpace, nameSpaceId);
         Object result = null;
-        SqlCommandType sqlCommandType = getSqlCommandType(path, action);
+        SqlCommandType sqlCommandType = getSqlCommandType(nameSpace, nameSpaceId);
 
         if (sqlCommandType == SqlCommandType.SELECT) {
-            result = sqlSession.selectList(returnId, params);
-            // if (result.equals(EMPTY_LIST)) { // 한개의 ROW가 모두 NULL일 경우
-            //    result = ListUtil.EMPTY_LIST;
-            // }
+            result = sqlSession.selectList(statementId, params);
         }
 
         if (sqlCommandType == SqlCommandType.INSERT) {
-            result = sqlSession.insert(returnId, params);
+            result = sqlSession.insert(statementId, params);
         }
 
         if (sqlCommandType == SqlCommandType.UPDATE) {
-            result = sqlSession.update(returnId, params);
+            result = sqlSession.update(statementId, params);
         }
 
         if (sqlCommandType == SqlCommandType.DELETE) {
-            result = sqlSession.delete(returnId, params);
+            result = sqlSession.delete(statementId, params);
         }
 
         if (sqlCommandType == SqlCommandType.UNKNOWN) {
-            throw new Exception("queryId=" + returnId + " does not exist");
+            throw new Exception("queryId=" + statementId + " does not exist");
         }
 
-        resultSet.put(returnId, result);
+        resultSet.put(statementId, result);
         return resultSet;
 
     }

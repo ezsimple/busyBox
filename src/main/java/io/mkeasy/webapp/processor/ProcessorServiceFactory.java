@@ -19,11 +19,10 @@ public class ProcessorServiceFactory implements ApplicationContextAware {
     }
 
     public Object executeQuery(String ns, String nsId, CaseInsensitiveMap params) throws Exception {
-        ProcessorParam processorParam = ProcessorParam.builder()
-                .nameSpace(ns)
-                .nameSpaceId(nsId)
-                .params(params)
-                .build();
+        ProcessorParam processorParam = new ProcessorParam();
+        processorParam.setNameSpace(ns);
+        processorParam.setNameSpaceId(nsId);
+        processorParam.setParams(params);
         Object obj = myBatisProcessor.execute(processorParam);
         return obj;
     }
