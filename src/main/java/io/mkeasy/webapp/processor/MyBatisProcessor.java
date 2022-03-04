@@ -1,6 +1,5 @@
 package io.mkeasy.webapp.processor;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -8,11 +7,9 @@ import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -30,7 +27,7 @@ public class MyBatisProcessor implements ProcessorService {
 
         String statementId = nameSpace + "." + nameSpaceId;
 
-        Map<String, Object> resultSet = new LinkedCaseInsensitiveMap<Object>();
+        // Map<String, Object> resultSet = new LinkedCaseInsensitiveMap<Object>();
 
         log.debug("queryPath = {}, action = {}", nameSpace, nameSpaceId);
         Object result = null;
@@ -56,8 +53,8 @@ public class MyBatisProcessor implements ProcessorService {
             throw new Exception("queryId=" + statementId + " does not exist");
         }
 
-        resultSet.put(statementId, result);
-        return resultSet;
+        // resultSet.put(statementId, result);
+        return result;
 
     }
 

@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import java.sql.ResultSetMetaData;
@@ -14,10 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@RequiredArgsConstructor
+@Service
 public class DefaultDaoSupportor {
 
-    private final JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     /**
      * 쿼리를 실행하고 기타 정보를 설정한 후 결과를 반환한다.

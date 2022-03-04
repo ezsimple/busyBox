@@ -53,6 +53,7 @@ public class QueryFactory {
 
 	private final List<Object> EMPTY_LIST = Collections.emptyList();
 
+	@Deprecated
 	public Object getResult(final String ns, final String nsId, final Object result) throws Exception {
 		checkNS(ns, nsId);
 		String key = ns+"."+nsId;

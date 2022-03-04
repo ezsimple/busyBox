@@ -85,36 +85,36 @@ public class CommandMap {
     }
     
     public CaseInsensitiveMap getQueryMap() {
-		String key = null;
-		String[] values = null;
 		CaseInsensitiveMap map = new CaseInsensitiveMap();
-    	for(Entry<String, Object> entry : this.getMap().entrySet()) {
-    		key = entry.getKey();
-    		Object o = entry.getValue();
-    		if(o instanceof String) {
-                map.put(key, o);
-    		}
-    		if(o instanceof String[]) {
-                values = (String[]) entry.getValue();
-                map.put(key, (values.length>1?values:values[0]));
-    		}
-    	}
-    	return map;
+        this.getMap().forEach((k, v) -> {
+            map.put(k, v);
+            if(v instanceof String
+                    || v instanceof Integer
+                    || v instanceof Long
+                    || v instanceof Double) {
+            }
+            if(v instanceof String[]) {
+                String[] values = (String[]) v;
+                map.put(k, (values.length>1?values:values[0]));
+            }
+        });
+        return map;
     }
     
     // for CamelCase
     public EgovMap getEgovMap() {
-		String key = null;
-		String[] values = null;
 		EgovMap map = new EgovMap();
     	for(Entry<String, Object> entry : this.getMap().entrySet()) {
-    		key = entry.getKey();
+    		String key = entry.getKey();
     		Object o = entry.getValue();
-    		if(o instanceof String) {
+            if(o instanceof String
+                    || o instanceof Integer
+                    || o instanceof Long
+                    || o instanceof Double) {
                 map.put(key, o);
-    		}
+            }
     		if(o instanceof String[]) {
-                values = (String[]) entry.getValue();
+                String[] values = (String[]) entry.getValue();
                 map.put(key, (values.length>1?values:values[0]));
     		}
     	}
