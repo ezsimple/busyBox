@@ -92,6 +92,7 @@ public class CommandMap {
                     || v instanceof Integer
                     || v instanceof Long
                     || v instanceof Double) {
+                map.put(k, v);
             }
             if(v instanceof String[]) {
                 String[] values = (String[]) v;
