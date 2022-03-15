@@ -3,14 +3,10 @@ package io.mkeasy.utils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +49,19 @@ public class DateUtil {
 
 	public static LocalDateTime getNowLocalDateTime() {
 		return LocalDateTime.now();
+	}
+
+	/**
+	 * 예) DateUtil.toLocalDateTime("2022-03-15", "yyyy-MM-dd")
+	 * @param date
+	 * @param dateFormat
+	 * @return
+	 */
+	public static java.time.LocalDateTime toLocalDateTime(String date, String dateFormat) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
+		LocalDate ld = LocalDate.parse(date, formatter);
+		java.time.LocalDateTime localDateTime = java.time.LocalDateTime.of(ld, LocalTime.of(0,0));
+		return localDateTime;
 	}
 
 	private static String MIN_DATE = "0001-01-01";
