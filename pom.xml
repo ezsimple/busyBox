@@ -25,6 +25,32 @@
 		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
 	</properties>
 
+	<repositories>
+	  <repository>
+	    <id>public</id>
+	    <url>http://127.0.0.1/nexus/repository/maven-public/</url>
+	    <releases>
+	      <enabled>true</enabled>
+            </releases>
+	    <snapshots>
+	      <enabled>true</enabled>
+	    </snapshots>
+	  </repository>
+	</repositories>
+
+	<!-- https://stackoverflow.com/questions/53421899/nexus-proxy-for-repo-maven-apache-org-not-working -->
+	<!-- maven/conf/settings.xml -->
+	<!-- settings>
+	  <mirrors>
+	    <mirror>
+	      <id>nexus-central</id>
+	      <name>Nexus Central</name>
+	      <url>http://127.0.0.1/nexus/repository/maven-public/</url>
+	      <mirrorOf>central</mirrorOf>
+	    </mirror>
+	  </mirrors>
+  	</settings -->
+
 	<dependencies>
 
 <!-- 		<dependency>
@@ -267,6 +293,16 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.8.0</version>
 		</dependency>
 	</dependencies>
 
