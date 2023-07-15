@@ -64,7 +64,7 @@ public class MapUtil {
 	public static <K, V> Map<K, V> filterMap(Map<K, V> map, String keypattern) {
         try {
             Map<K, V> filtered = map.getClass().newInstance();
-            for (Map.Entry<K, V> entry : map.entrySet()) {
+            for (Entry<K, V> entry : map.entrySet()) {
                 K key = entry.getKey();
                 if (key.toString().matches(keypattern)) {
                     filtered.put(key, entry.getValue());
@@ -131,7 +131,7 @@ public class MapUtil {
 	public static Map<String, String[]> clone(Map<String, String[]> origMap) {
 		Set<Entry<String, String[]>> entries = origMap.entrySet();
 		HashMap<String, String[]> cloneMap = (HashMap<String, String[]>) entries.stream()
-				  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+				  .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
 		return cloneMap;
 	}
 	

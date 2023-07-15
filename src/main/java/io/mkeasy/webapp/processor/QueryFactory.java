@@ -53,7 +53,7 @@ public class QueryFactory {
 
 	private final List<Object> EMPTY_LIST = Collections.emptyList();
 
-	@Deprecated
+	// @Deprecated
 	public Object getResult(final String ns, final String nsId, final Object result) throws Exception {
 		checkNS(ns, nsId);
 		String key = ns+"."+nsId;
@@ -118,7 +118,7 @@ public class QueryFactory {
 	 * @param result
 	 * @return
 	 */
-	public static String toString(Object result) {
+	public String toString(Object result) {
 		if (result instanceof String)
 			return String.valueOf(result);
 		Object[] obj = ListUtil.toArray(result);
@@ -135,11 +135,11 @@ public class QueryFactory {
 	 * @param result
 	 * @return
 	 */
-	public static org.json.JSONArray toJSONArray(Object result) {
+	public org.json.JSONArray toJSONArray(Object result) {
 		return JSONUtil.convertListToJson((List<Map<String, Object>>) result);
 	}
 
-	private static void checkNS(String ns, String nsId) throws Exception {
+	private void checkNS(String ns, String nsId) throws Exception {
 		if (StringUtils.isEmpty(ns)) throw new Exception("ns is empty");
 		if (StringUtils.isEmpty(nsId)) throw new Exception("nsId is empty");
 	}
