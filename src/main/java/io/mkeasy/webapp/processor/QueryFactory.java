@@ -1,19 +1,20 @@
 package io.mkeasy.webapp.processor;
 
-import io.mkeasy.utils.JSONUtil;
-import io.mkeasy.utils.ListUtil;
-import io.mkeasy.utils.MapUtil;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import io.mkeasy.utils.JSONUtil;
+import io.mkeasy.utils.ListUtil;
+import io.mkeasy.utils.MapUtil;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class QueryFactory {
@@ -53,15 +54,28 @@ public class QueryFactory {
 
 	private final List<Object> EMPTY_LIST = Collections.emptyList();
 
-	// @Deprecated
-	public Object getResult(final String ns, final String nsId, final Object result) throws Exception {
-		checkNS(ns, nsId);
-		String key = ns+"."+nsId;
-		Object map = ((Map<String, Object>) result).get(key);
-		if(map!=null && map instanceof List && map.equals(EMPTY_LIST)) // 한개의 ROW가 모두 NULL일 경우
-			return EMPTY_LIST;
-		return map;
-	}
+	/**
+	 * 사용금지
+	 * queryFactory.execute(...)에서 이미 getResult 처리까지 하므로, 더이상 사용할 필요가 없습니다.
+	 * @param ns
+	 * @param nsId
+	 * @param result
+	 * @return
+	 * @throws Exception
+	 */
+//	@Deprecated
+//	public Object getResult(final String ns, final String nsId, final Object result) throws Exception {
+//		checkNS(ns, nsId);
+//		String key = ns+"."+nsId;
+//		if(result==null)
+//			return EMPTY_LIST;
+//
+//		Object map = ((Map<String, Object>) result).get(key);
+//		if(map!=null && map instanceof List && map.equals(EMPTY_LIST)) // 한개의 ROW가 모두 NULL일 경우
+//			return EMPTY_LIST;
+//
+//		return map;
+//	}
 
 	/**
 	 * result는 getResult(ns,nsId,result)의 값입니다.
@@ -72,6 +86,21 @@ public class QueryFactory {
 	public List<Map<String, Object>> toList(Object result) {
 		return (List<Map<String, Object>>) result;
 	}
+
+//
+//	@Autowired
+//	private ObjectMapper objectMapper;
+//
+//	public List<T> toList(Object obj) {
+//		List<Map<String, Object>> out = (List<Map<String, Object>>) obj;
+//		List arr = new ArrayList();
+//		Class<T> clazz = (Class<T>)	((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+//		out.forEach(o -> {
+//			T v = objectMapper.convertValue(o, clazz);
+//			arr.add(o);
+//		});
+//		return (List<T>) arr;
+//	}
 
 	/**
 	 * result는 getResult(ns,nsId,result)의 값입니다.
